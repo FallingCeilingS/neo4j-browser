@@ -23,11 +23,12 @@ import NeoD3Geometry from './graphGeometry'
 import * as vizRenderers from '../renders/init'
 import { menu as menuRenderer } from '../renders/menu'
 import vizClickHandler from '../utils/clickHandler'
+import Graph from './graph'
 
 const vizFn = function(
   el: any,
   measureSize: any,
-  graph: any,
+  graph: Graph,
   layout: any,
   style: any
 ) {
@@ -280,7 +281,7 @@ const vizFn = function(
       .append('g')
       .attr('class', (d: any) => `layer ${d}`)
 
-    const nodes = graph.nodes()
+    const nodes = graph.getNodes()
     const relationships = graph.relationships()
 
     const relationshipGroups = container

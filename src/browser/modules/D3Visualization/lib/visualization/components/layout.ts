@@ -21,6 +21,7 @@ import d3 from 'd3'
 import collision from './collision'
 import circularLayout from '../utils/circularLayout'
 import cloneArray from '../utils/arrays'
+import Graph from './graph'
 
 const layout = {
   force: () => {
@@ -93,8 +94,8 @@ const layout = {
             (pair: any) => pair.relationships[0]
           )
 
-        forceLayout.update = function(graph: any, size: any) {
-          const nodes = cloneArray(graph.nodes())
+        forceLayout.update = function(graph: Graph, size: any) {
+          const nodes = cloneArray(graph.getNodes())
           const relationships = oneRelationshipPerPairOfNodes(graph)
 
           const radius = (nodes.length * linkDistance) / (Math.PI * 2)

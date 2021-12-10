@@ -19,6 +19,7 @@
  */
 import PairwiseArcsRelationshipRouting from '../utils/pairwiseArcsRelationshipRouting'
 import measureText from '../utils/textMeasurement'
+import Graph from './graph'
 
 export default class NeoD3Geometry {
   relationshipRouting: any
@@ -57,9 +58,9 @@ export default class NeoD3Geometry {
     )
   }
 
-  onGraphChange(graph: any) {
-    this.setNodeRadii(graph.nodes())
-    this.formatNodeCaptions(graph.nodes())
+  onGraphChange(graph: Graph) {
+    this.setNodeRadii(graph.getNodes())
+    this.formatNodeCaptions(graph.getNodes())
     this.formatRelationshipCaptions(graph.relationships())
     return this.relationshipRouting.measureRelationshipCaptions(
       graph.relationships()

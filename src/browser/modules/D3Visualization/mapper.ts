@@ -20,7 +20,7 @@
 
 import { optionalToString } from 'services/utils'
 import Graph from './lib/visualization/components/graph'
-import Node from './lib/visualization/components/node'
+import Node from './lib/visualization/components/Node'
 import Relationship from './lib/visualization/components/relationship'
 
 const mapProperties = (_: any) => Object.assign({}, ...stringifyValues(_))
@@ -75,10 +75,10 @@ export type GraphStats = {
   relTypes?: GraphStatsRelationshipTypes
 }
 
-export function getGraphStats(graph: any): GraphStats {
+export function getGraphStats(graph: Graph): GraphStats {
   const labelStats: any = {}
   const relTypeStats: any = {}
-  graph.nodes().forEach((node: any) => {
+  graph.getNodes().forEach((node: Node) => {
     node.labels.forEach((label: any) => {
       if (labelStats['*']) {
         labelStats['*'].count = labelStats['*'].count + 1

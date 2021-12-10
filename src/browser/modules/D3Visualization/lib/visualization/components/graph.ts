@@ -18,8 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Node from './node'
+
 export default class Graph {
-  _nodes: any
+  _nodes: Node[]
   _relationships: any[]
   expandedNodeMap: any
   nodeMap: any
@@ -45,7 +47,7 @@ export default class Graph {
     this._relationships = []
   }
 
-  nodes() {
+  getNodes(): Node[] {
     return this._nodes
   }
 

@@ -23,7 +23,7 @@ import deepmerge from 'deepmerge'
 import { connect, ConnectedComponent } from 'react-redux'
 import { debounce } from 'lodash'
 
-import Node from '../lib/visualization/components/node'
+import Node from '../lib/visualization/components/Node'
 import Relationship from '../lib/visualization/components/relationship'
 import neoGraphStyle from '../graphStyle'
 import { GlobalState } from 'shared/globalState'

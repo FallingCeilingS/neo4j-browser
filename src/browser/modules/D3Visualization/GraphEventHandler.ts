@@ -18,18 +18,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Graph from './lib/visualization/components/graph'
 import { mapNodes, mapRelationships, getGraphStats } from './mapper'
 
 export class GraphEventHandler {
   getNodeNeighbours: any
-  graph: any
+  graph: Graph
   graphView: any
   onGraphModelChange: any
   onItemMouseOver: any
   onItemSelected: any
   selectedItem: any
   constructor(
-    graph: any,
+    graph: Graph,
     graphView: any,
     getNodeNeighbours: any,
     onItemMouseOver: any,
@@ -66,7 +67,7 @@ export class GraphEventHandler {
     this.onItemSelected({
       type: 'canvas',
       item: {
-        nodeCount: this.graph.nodes().length,
+        nodeCount: this.graph.getNodes().length,
         relationshipCount: this.graph.relationships().length
       }
     })
@@ -193,7 +194,7 @@ export class GraphEventHandler {
     this.onItemMouseOver({
       type: 'canvas',
       item: {
-        nodeCount: this.graph.nodes().length,
+        nodeCount: this.graph.getNodes().length,
         relationshipCount: this.graph.relationships().length
       }
     })
