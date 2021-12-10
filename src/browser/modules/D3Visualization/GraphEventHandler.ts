@@ -68,7 +68,7 @@ export class GraphEventHandler {
       type: 'canvas',
       item: {
         nodeCount: this.graph.getNodes().length,
-        relationshipCount: this.graph.relationships().length
+        relationshipCount: this.graph.getRelationships().length
       }
     })
     this.graphView.update()
@@ -195,7 +195,7 @@ export class GraphEventHandler {
       type: 'canvas',
       item: {
         nodeCount: this.graph.getNodes().length,
-        relationshipCount: this.graph.relationships().length
+        relationshipCount: this.graph.getRelationships().length
       }
     })
   }

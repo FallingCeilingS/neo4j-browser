@@ -57,7 +57,7 @@ export default class Node {
 
   relationshipCount(graph: Graph): number {
     const rels = []
-    for (const relationship of Array.from(graph.relationships())) {
+    for (const relationship of graph.getRelationships()) {
       if (relationship.source === this || relationship.target === this) {
         rels.push(relationship)
       }

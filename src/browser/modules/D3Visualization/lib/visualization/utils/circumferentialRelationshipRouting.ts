@@ -21,6 +21,7 @@ import measureText from './textMeasurement'
 import distributeCircular from './circumferentialDistribution'
 import StraightArrow from './straightArrow'
 import ArcArrow from './arcArrow'
+import Graph from '../components/graph'
 
 export default class circumferentialRelationshipRouting {
   style: any
@@ -82,7 +83,7 @@ export default class circumferentialRelationshipRouting {
 
   layoutRelationships(graph: any) {
     let dx, dy
-    for (var relationship of Array.from<any>(graph.relationships())) {
+    for (var relationship of graph.getRelationships()) {
       dx = relationship.target.x - relationship.source.x
       dy = relationship.target.y - relationship.source.y
       relationship.naturalAngle =
@@ -91,7 +92,7 @@ export default class circumferentialRelationshipRouting {
     }
 
     const sortedNodes = graph
-      .nodes()
+      .getNodes()
       .sort(
         (a: any, b: any) =>
           b.relationshipCount(graph) - a.relationshipCount(graph)
@@ -102,7 +103,7 @@ export default class circumferentialRelationshipRouting {
       for (var node of Array.from(sortedNodes)) {
         var angle
         const relationships: any[] = []
-        for (relationship of Array.from(graph.relationships())) {
+        for (relationship of Array.from(graph.getRelationships())) {
           if (relationship.source === node || relationship.target === node) {
             relationships.push(relationship)
           }

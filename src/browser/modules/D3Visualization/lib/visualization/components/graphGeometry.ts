@@ -61,9 +61,9 @@ export default class NeoD3Geometry {
   onGraphChange(graph: Graph) {
     this.setNodeRadii(graph.getNodes())
     this.formatNodeCaptions(graph.getNodes())
-    this.formatRelationshipCaptions(graph.relationships())
+    this.formatRelationshipCaptions(graph.getRelationships())
     return this.relationshipRouting.measureRelationshipCaptions(
-      graph.relationships()
+      graph.getRelationships()
     )
   }
 

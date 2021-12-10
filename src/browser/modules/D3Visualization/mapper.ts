@@ -21,7 +21,7 @@
 import { optionalToString } from 'services/utils'
 import Graph from './lib/visualization/components/graph'
 import Node from './lib/visualization/components/Node'
-import Relationship from './lib/visualization/components/relationship'
+import Relationship from './lib/visualization/components/Relationship'
 
 const mapProperties = (_: any) => Object.assign({}, ...stringifyValues(_))
 const stringifyValues = (obj: any) =>
@@ -102,7 +102,7 @@ export function getGraphStats(graph: Graph): GraphStats {
       }
     })
   })
-  graph.relationships().forEach((rel: any) => {
+  graph.getRelationships().forEach((rel: Relationship) => {
     if (relTypeStats['*']) {
       relTypeStats['*'].count = relTypeStats['*'].count + 1
     } else {

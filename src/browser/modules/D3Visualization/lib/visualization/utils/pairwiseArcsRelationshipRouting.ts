@@ -21,6 +21,7 @@ import measureText from './textMeasurement'
 import LoopArrow from './loopArrow'
 import StraightArrow from './straightArrow'
 import ArcArrow from './arcArrow'
+import Graph from '../components/graph'
 
 export default class PairwiseArcsRelationshipRouting {
   style: any
@@ -189,13 +190,13 @@ export default class PairwiseArcsRelationshipRouting {
     })()
   }
 
-  layoutRelationships(graph: any) {
+  layoutRelationships(graph: Graph) {
     const nodePairs: Iterable<{
       relationships: any[]
       [key: string]: any
     }> = graph.groupedRelationships()
     this.computeGeometryForNonLoopArrows(nodePairs)
-    this.distributeAnglesForLoopArrows(nodePairs, graph.relationships())
+    this.distributeAnglesForLoopArrows(nodePairs, graph.getRelationships())
 
     return (() => {
       const result = []

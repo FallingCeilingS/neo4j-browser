@@ -19,10 +19,11 @@
  */
 
 import Node from './node'
+import Relationship from './Relationship'
 
 export default class Graph {
   _nodes: Node[]
-  _relationships: any[]
+  _relationships: Relationship[]
   expandedNodeMap: any
   nodeMap: any
   relationshipMap: any
@@ -51,7 +52,7 @@ export default class Graph {
     return this._nodes
   }
 
-  relationships() {
+  getRelationships(): Relationship[] {
     return this._relationships
   }
 

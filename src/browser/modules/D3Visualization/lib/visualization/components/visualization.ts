@@ -24,6 +24,7 @@ import * as vizRenderers from '../renders/init'
 import { menu as menuRenderer } from '../renders/menu'
 import vizClickHandler from '../utils/clickHandler'
 import Graph from './graph'
+import Relationship from './Relationship'
 
 const vizFn = function(
   el: any,
@@ -282,12 +283,12 @@ const vizFn = function(
       .attr('class', (d: any) => `layer ${d}`)
 
     const nodes = graph.getNodes()
-    const relationships = graph.relationships()
+    const relationships = graph.getRelationships()
 
     const relationshipGroups = container
       .select('g.layer.relationships')
       .selectAll('g.relationship')
-      .data(relationships, (d: any) => d.id)
+      .data(relationships, (d: Relationship) => d.id)
 
     relationshipGroups
       .enter()
