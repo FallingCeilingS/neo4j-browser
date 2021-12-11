@@ -83,20 +83,34 @@ export const StyledSvgWrapper = styled.div`
     .outline {
       cursor: pointer;
     }
-    .caption div {
+    .caption .container {
       height: 100%;
-      border-radius: 100%;
-      background: #accede;
-      text-align: center;
-      span {
-        line-height: normal;
-      }
+      width: 100%;
+      position: relative;
     }
-    .caption div::before {
+    .caption .container .quote-wrapper {
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0, 128, 172, 1) 0%,
+        rgba(0, 128, 172, 1) 70%,
+        rgba(0, 128, 172, 0) 70.3%
+      );
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+    }
+    .caption .container .quote-wrapper .text {
+      height: 100%;
+      line-height: 1.25;
+      padding: 0;
+      text-align: center;
+    }
+    .caption .container .quote-wrapper::before {
       content: '';
+      float: left;
       height: 100%;
       width: 50%;
-      float: left;
       shape-outside: polygon(
         0 0,
         100% 0,
@@ -115,11 +129,11 @@ export const StyledSvgWrapper = styled.div`
         0% 100%
       );
     }
-    .caption div > span::before {
+    .caption .container .quote-wrapper .text::before {
       content: '';
+      float: right;
       height: 100%;
       width: 50%;
-      float: right;
       shape-outside: polygon(
         100% 0,
         0 0,

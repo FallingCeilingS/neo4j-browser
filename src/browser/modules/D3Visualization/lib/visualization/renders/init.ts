@@ -107,10 +107,13 @@ const nodeCaption = new Renderer({
         height: (node: any) => node.radius * 2,
         transform: (node: any) => `translate(-${node.radius}, -${node.radius})`
       })
-    const div = foreignObject.append('xhtml:div')
-    const span = div.append('xhtml:span')
+    const div = foreignObject.append('xhtml:div').classed('container', true)
+    const blockQuote = div
+      .append('xhtml:blockquote')
+      .classed('quote-wrapper', true)
+    const p = blockQuote.append('xhtml:p').classed('text', true)
 
-    span.html((node: any) => node.captionText)
+    p.html((node: any) => node.captionText)
 
     // Avoid element being appended more than once
     return caption.exit().remove()
