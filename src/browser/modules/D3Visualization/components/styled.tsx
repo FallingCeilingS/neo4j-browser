@@ -91,8 +91,8 @@ export const StyledSvgWrapper = styled.div`
     .caption .container .quote-wrapper {
       background: radial-gradient(
         ellipse at center,
-        rgba(0, 128, 172, 1) 0%,
-        rgba(0, 128, 172, 1) 70%,
+        rgba(0, 128, 172, 0) 0%,
+        rgba(0, 128, 172, 0) 70%,
         rgba(0, 128, 172, 0) 70.3%
       );
       height: 100%;
@@ -128,6 +128,7 @@ export const StyledSvgWrapper = styled.div`
         100% 100%,
         0% 100%
       );
+      shape-margin: 2%;
     }
     .caption .container .quote-wrapper .text::before {
       content: '';
@@ -151,6 +152,7 @@ export const StyledSvgWrapper = styled.div`
         0 100%,
         100% 100%
       );
+      shape-margin: 2%;
     }
     path {
       &.context-menu-item {

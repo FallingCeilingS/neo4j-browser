@@ -59,34 +59,8 @@ const nodeOutline = new Renderer({
 
 const nodeCaption = new Renderer({
   onGraphChange(selection: any, viz: any) {
-    // called twice
+    // called twice when initialising
     console.log(viz)
-
-    // const text = selection
-    //   .selectAll('text.caption')
-    //   .data((node: any) => node.caption)
-
-    // text
-    //   .enter()
-    //   .append('text')
-    //   // .classed('caption', true)
-    //   .attr({ 'text-anchor': 'middle' })
-    //   .attr({ 'pointer-events': 'none' })
-
-    // text
-    //   .text((line: any) => line.text)
-    //   .attr('x', 0)
-    //   .attr('y', (line: any) => line.baseline)
-    //   .attr('font-size', (line: any) =>
-    //     viz.style.forNode(line.node).get('font-size')
-    //   )
-    //   .attr({
-    //     fill(line: any) {
-    //       return viz.style.forNode(line.node).get('text-color-internal')
-    //     }
-    //   })
-
-    // return text.exit().remove()
 
     // Remove existing child before appending new one
     selection.selectAll('foreignObject.caption').remove()
@@ -113,7 +87,13 @@ const nodeCaption = new Renderer({
       .classed('quote-wrapper', true)
     const p = blockQuote.append('xhtml:p').classed('text', true)
 
-    p.html((node: any) => node.captionText)
+    p.html((node: any) => node.captionText).attr(
+      'style',
+      (node: any) =>
+        `
+        font-size: ${viz.style.forNode(node).get('font-size')}; 
+        color: ${viz.style.forNode(node).get('text-color-internal')}`
+    )
 
     // Avoid element being appended more than once
     return caption.exit().remove()
