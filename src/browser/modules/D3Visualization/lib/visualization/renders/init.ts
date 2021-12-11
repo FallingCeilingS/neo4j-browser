@@ -95,20 +95,22 @@ const nodeCaption = new Renderer({
       .selectAll('foreignObject.caption')
       .data((node: any) => [node])
 
+    // IE doesn't support foreignObject
     const foreignObject = caption
       .enter()
       .append('foreignObject')
       .classed('caption', true)
       .attr({
-        x: (node: any) => -node.radius,
-        y: (node: any) => -node.radius,
+        x: 0,
+        y: 0,
         width: (node: any) => node.radius * 2,
-        height: (node: any) => node.radius * 2
+        height: (node: any) => node.radius * 2,
+        transform: (node: any) => `translate(-${node.radius}, -${node.radius})`
       })
-    const div = foreignObject.append('xhtml:div').classed('container', true)
+    const div = foreignObject.append('xhtml:div')
     const span = div.append('xhtml:span')
 
-    span.text((node: any) => node.captionText)
+    span.html((node: any) => node.captionText)
 
     // Avoid element being appended more than once
     return caption.exit().remove()
