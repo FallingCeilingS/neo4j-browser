@@ -30,9 +30,12 @@ export default class NeoD3Geometry {
   }
 
   formatNodeCaptions(nodes: any[]) {
-    return Array.from(nodes).map(
-      node => (node.caption = fitCaptionIntoCircle(node, this.style))
-    )
+    return Array.from(nodes).map(node => {
+      const template = this.style.forNode(node).get('caption')
+      const nodeText = this.style.interpolate(template, node)
+      node.caption = fitCaptionIntoCircle(node, this.style)
+      node.captionText = nodeText
+    })
   }
 
   formatRelationshipCaptions(relationships: any[]) {

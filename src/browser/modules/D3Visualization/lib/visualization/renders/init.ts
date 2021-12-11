@@ -59,31 +59,59 @@ const nodeOutline = new Renderer({
 
 const nodeCaption = new Renderer({
   onGraphChange(selection: any, viz: any) {
-    const text = selection
-      .selectAll('text.caption')
-      .data((node: any) => node.caption)
+    // called twice
+    console.log(viz)
 
-    text
+    // const text = selection
+    //   .selectAll('text.caption')
+    //   .data((node: any) => node.caption)
+
+    // text
+    //   .enter()
+    //   .append('text')
+    //   // .classed('caption', true)
+    //   .attr({ 'text-anchor': 'middle' })
+    //   .attr({ 'pointer-events': 'none' })
+
+    // text
+    //   .text((line: any) => line.text)
+    //   .attr('x', 0)
+    //   .attr('y', (line: any) => line.baseline)
+    //   .attr('font-size', (line: any) =>
+    //     viz.style.forNode(line.node).get('font-size')
+    //   )
+    //   .attr({
+    //     fill(line: any) {
+    //       return viz.style.forNode(line.node).get('text-color-internal')
+    //     }
+    //   })
+
+    // return text.exit().remove()
+
+    // Remove existing child before appending new one
+    selection.selectAll('foreignObject.caption').remove()
+
+    const caption = selection
+      .selectAll('foreignObject.caption')
+      .data((node: any) => [node])
+
+    const foreignObject = caption
       .enter()
-      .append('text')
-      // .classed('caption', true)
-      .attr({ 'text-anchor': 'middle' })
-      .attr({ 'pointer-events': 'none' })
-
-    text
-      .text((line: any) => line.text)
-      .attr('x', 0)
-      .attr('y', (line: any) => line.baseline)
-      .attr('font-size', (line: any) =>
-        viz.style.forNode(line.node).get('font-size')
-      )
+      .append('foreignObject')
+      .classed('caption', true)
       .attr({
-        fill(line: any) {
-          return viz.style.forNode(line.node).get('text-color-internal')
-        }
+        x: (node: any) => -node.radius,
+        y: (node: any) => -node.radius,
+        width: (node: any) => node.radius * 2,
+        height: (node: any) => node.radius * 2
       })
+    const div = foreignObject.append('xhtml:div').classed('container', true)
+    const span = div.append('xhtml:span')
 
-    return text.exit().remove()
+    span.text((node: any) => node.captionText)
+
+    // Avoid element being appended more than once
+    return caption.exit().remove()
   },
 
   onTick: noop

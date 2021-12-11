@@ -83,6 +83,10 @@ export const StyledSvgWrapper = styled.div`
     .outline {
       cursor: pointer;
     }
+    .caption div {
+      background-color: black;
+      height: 100%;
+    }
     path {
       &.context-menu-item {
         stroke-width: 2px;
